@@ -35,7 +35,20 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class nagiosopenstack {
-  notify { "Hello": }
-
+class nagiosopenstack (
+  $use_hiera = true,
+  $nagios_server = undef,
+  $release = undef,
+) {
+  if $use_hiera {
+    class { '::nagiosopenstack::config':
+      nagios_server => hiera(nagiosopenstack::nagios_server),
+      release       => hiera(nagiosopenstack::release),
+    }
+  } else {
+    class { '::nagiosopenstack::config':
+      nagios_server => $nagios_server,
+      release       => $release,
+    }
+  }
 }
