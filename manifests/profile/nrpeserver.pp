@@ -21,12 +21,13 @@ class nagiosopenstack::profile::nrpeserver {
     group   => 'root',
     mode    => '0644',
     require => Package['nagios-nrpe-server'],
-  } ->
+  }
   file_line { '/etc/nagios/nrpe.cfg':
-    path   => '/etc/nagios/nrpe.cfg',
-    line   => "allowed_hosts=127.0.0.1,${::nagiosopenstack::config::nagios_server}",
-    match  => 'allowed_hosts=*',
-    notify => Service['nagios-nrpe-server'],
+    path    => '/etc/nagios/nrpe.cfg',
+    line    => "allowed_hosts=127.0.0.1,${::nagiosopenstack::config::nagios_server}",
+    match   => 'allowed_hosts=*',
+    notify  => Service['nagios-nrpe-server'],
+    require => File['/etc/nagios/nrpe.cfg'],
   }
 
   # Restart nagios-nrpe-server
