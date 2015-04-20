@@ -1,33 +1,15 @@
 class nagiosopenstack::profile::nagiosserver {
   case $::osfamily {
-    debian: {
-    $nagios_package = 'nagios3'
-    $nagios_service = 'nagios3'
+    'centos': {
+      $cfgdir = '/etc/nagios'
+      $apache_service = 'httpd'
+      include nagiosopenstack::profile::nagiosserver::centos
     }
-    redhat: {
-    $nagios_package = 'nagios'
-    $nagios_service = 'nagios'
+    'debian': {
+      $apache_service = 'apache2'
+      $cfgdir = '/etc/nagios3'
+      include nagiosopenstack::profile::nagiosserver::debian
     }
-    default: {
-      fail("This module does not support osfamily: ${::osfamily}")
-    }
-  }
-  package { 'nagios':
-    ensure => latest,
-    name   => $nagios_package,
-  }
-  package { 'nagios-nrpe-plugin':
-    ensure => latest,
-  }
-  exec { "/usr/bin/htpasswd -nb ${::nagiosopenstack::config::nagios_username} ${::nagiosopenstack::config::nagios_password}":
-    require => Package['nagios'],
-    notify  => Service['nagios'],
-  }
-  service { 'nagios':
-    ensure     => running,
-    name       => $nagios_service,
-    hasstatus  => true,
-    hasrestart => true,
-    require    => Package['nagios'],
+    default: { fail("No such osfamily: ${::osfamily} yet defined") }
   }
 }
