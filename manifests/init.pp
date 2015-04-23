@@ -39,18 +39,22 @@ class nagiosopenstack (
   $use_hiera = true,
   $nagios_server = undef,
   $release = undef,
-  $host_list = undef,
-  $address_list = undef,
+  $nagios_user = undef,
+  $nagios_password = undef,
 ) {
   if $use_hiera {
     class { '::nagiosopenstack::config':
       nagios_server   => hiera(nagiosopenstack::nagios_server),
       release         => hiera(nagiosopenstack::release),
+      nagios_user     => hiera(nagiosopenstack::nagios_user),
+      nagios_password => hiera(nagiosopenstack::nagios_password),
     }
   } else {
     class { '::nagiosopenstack::config':
       nagios_server   => $nagios_server,
       release         => $release,
+      nagios_user     => $nagios_user,
+      nagios_password => $nagios_password,
     }
   }
 }
