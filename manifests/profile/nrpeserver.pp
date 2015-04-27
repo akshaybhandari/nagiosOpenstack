@@ -1,7 +1,7 @@
 class nagiosopenstack::profile::nrpeserver {
   # install package nagios-nrpe-server
   package { 'nagios-nrpe-server':
-    ensure => latest,
+    ensure => present,
   }
 
   # add nagios users to sudoers

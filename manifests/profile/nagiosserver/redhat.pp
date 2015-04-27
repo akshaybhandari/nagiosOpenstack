@@ -1,10 +1,10 @@
 class nagiosopenstack::profile::nagiosserver::redhat {
   package { 'nagios':
-    ensure => latest,
+    ensure => present,
     name   => "${nagiosopenstack::profile::nagiosserver::nagios_name}",
   }
   package { [ 'nagios-plugins', 'nagios-nrpe-plugin' ]:
-    ensure  => latest,
+    ensure  => present,
   }
 
   # Manage the Nagios monitoring service

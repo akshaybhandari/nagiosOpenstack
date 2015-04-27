@@ -1,11 +1,11 @@
 class nagiosopenstack::profile::nagiosserver::debian {
 #  nagios_name = $::nagiosopenstack::profile::nagiosserver::nagios_name
   package { 'nagios':
-    ensure => latest,
+    ensure => present,
     name   => "${nagiosopenstack::profile::nagiosserver::nagios_name}",
   }
   package { [ 'nagios-plugins', 'nagios-nrpe-plugin' ]:
-    ensure  => latest,
+    ensure  => present,
   }
 
   # Manage the Nagios monitoring service
