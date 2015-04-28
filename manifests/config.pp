@@ -18,5 +18,6 @@ class nagiosopenstack::config (
   $openstack_username = undef,
   $openstack_password = undef,
   $openstack_tenant = undef,
+  $openstack_openvswitch_external_bridge = undef,
 ) {
 }

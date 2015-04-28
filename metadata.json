@@ -10,7 +10,9 @@
   "dependencies": [
     {"version_requirement":">= 1.0.0","name":"puppetlabs/stdlib"},
     {"name":"puppetlabs/apt","version_requirement":">= 1.0.0 <2.0.0"},
-    {"name":"akshaybhandari/nagioscontroller","version_requirement":">= 0.1.0"}
+    {"name":"akshaybhandari/nagioscontroller","version_requirement":">= 0.1.0"},
+    {"name":"akshaybhandari/nagioscompute","version_requirement":">= 0.1.0"},
+    {"name":"akshaybhandari/nagioscinder","version_requirement":">= 0.1.0"}
   ]
 }
 

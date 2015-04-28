@@ -29,6 +29,14 @@ class nagiosopenstack::profile::nrpeserver {
     notify  => Service['nagios-nrpe-server'],
     require => File['/etc/nagios/nrpe.cfg'],
   }
+  file { '/etc/nagios/nrpe.d/nrpe_command.cfg':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    notify  => Service['nagios-nrpe-server'],
+    require => Package['nagios-nrpe-server'],
+  }
 
   # Restart nagios-nrpe-server
   service { 'nagios-nrpe-server':
