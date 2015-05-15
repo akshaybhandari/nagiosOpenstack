@@ -1,5 +1,6 @@
 class nagiosopenstack::role::controller inherits ::nagiosopenstack::role {
   class { 'nagiosopenstack::profile::nrpeserver': }
+  class { 'nagiosbase': } ->
   class { 'nagioscontroller':
     router_list  => $::nagiosopenstack::config::openstack_router_list,
     service_list => $::nagiosopenstack::config::openstack_controller_service_list,
